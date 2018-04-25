@@ -6,10 +6,16 @@ using UnityEngine;
 public class Rocket : MonoBehaviour
 {
 
+    Rigidbody rigidbody;
+    Transform transform;
+
     // Use this for initialization
     void Start()
     {
-        print("started!");
+        //print("started!");
+        rigidbody = GetComponent<Rigidbody>();
+        transform = GetComponent<Transform>();
+        //print("Start:" + transform.position.y);
     }
 
     // Update is called once per frame
@@ -22,16 +28,17 @@ public class Rocket : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            print("su-be-su plessed");
+            //print("ProcessInput.space():" + transform.position.y);
+            rigidbody.AddRelativeForce(Vector3.up);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            print("lotating reft plessed");
+            transform.Rotate(Vector3.forward);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            print("lotating light plessed");
+            transform.Rotate(Vector3.back);
         }
 
     }
