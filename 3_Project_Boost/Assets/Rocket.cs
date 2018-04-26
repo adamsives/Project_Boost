@@ -9,13 +9,14 @@ public class Rocket : MonoBehaviour
     Rigidbody rigidbody;
     Transform transform;
 
+    AudioSource audio;
     // Use this for initialization
     void Start()
     {
         //print("started!");
         rigidbody = GetComponent<Rigidbody>();
         transform = GetComponent<Transform>();
-        //print("Start:" + transform.position.y);
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,8 +29,15 @@ public class Rocket : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            //print("ProcessInput.space():" + transform.position.y);
             rigidbody.AddRelativeForce(Vector3.up);
+            if (!audio.isPlaying)
+            {
+                audio.Play();
+            }
+        }
+        else
+        {
+            audio.Stop();
         }
 
         if (Input.GetKey(KeyCode.A))
